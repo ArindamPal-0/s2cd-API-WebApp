@@ -1,4 +1,5 @@
 from flask import Flask, Blueprint, request, jsonify, make_response
+from flask import render_template
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
 from datetime import datetime
@@ -192,7 +193,15 @@ app.register_blueprint(api)
 
 @app.route('/')
 def index():
-    return 'Hello, World!'
+    response = make_response(
+        render_template('index.html'),
+        200,
+        {
+            'content-type': 'text/html'
+        }
+    )
+
+    return response
 
 
 if __name__ == '__main__':
