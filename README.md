@@ -15,6 +15,32 @@
 
 <br>
 
+### **Test API conn**
+Returns a simple message to check API conn
+* **URL**<br>
+    /api
+* **Methods:**<br>
+    `GET`
+* **URL Params:**<br>
+    None
+* **Data Params:**<br>
+    None
+* **Success Response:**<br>
+    * **Code:** 200<br>
+    **Content:**<br>
+    `{ msg: "This is Sensor Data Store API..." }`
+* **Error Response:**<br>
+    None
+* **Sample Call:**<br>
+    ```JavaScript
+        fetch('/api')
+        .then(response => response.json())
+        .then(data => console.log('success', data))
+        .catch(err => console.error('Error:', err));
+    ```
+
+<br>
+
 ### **Show Values**
 Returns json data of list of values
 * **URL**<br>

@@ -4,7 +4,7 @@ from datetime import datetime
 from log import log, Log
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite3'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
@@ -83,6 +83,11 @@ def delete_value(id: int):
 
 
 api = Blueprint('api', __name__, url_prefix='/api')
+
+@api.route('/')
+def test_api_conn():
+    response = make_response(jsonify({'msg': 'This is Sensor Data Store API...'}), 200, {'content-type': 'application/json'})
+    return response
 
 @api.route('/sensor_values')
 def get_all_data():
