@@ -5,23 +5,43 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sensor 2 Cloud Demo</title>
+    <link rel="icon" href="{{url_for('static', filename='/img/sensor.png')}}" type="image/png">
     <link rel="stylesheet" href="{{url_for('static', filename='/styles.css')}}">
 </head>
 <body>
-    <h1>Sensor 2 Cloud DEMO</h1>
-
-    <table>
-        <caption>sensor values</caption>
-        <thead>
-            <tr>
-                <th>Sno</th>
-                <th>Sensor Value</th>
-                <th>Date Added</th>
-            </tr>
-        </thead>
-        <tbody>
-        </tbody>
-    </table>
+    <header>
+        <div class="container">
+            <h1>Sensor 2 Cloud DEMO</h1>
+        </div>
+    </header>
+    <main>
+        <div class="container">
+            auto refresh
+            <div class="container-row">
+                <label class="switch">
+                    <input type="checkbox" id="auto_refresh">
+                    <span class="slider round"></span>
+                </label>
+                <img class="button" id="refresh" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Refresh_icon.svg/1200px-Refresh_icon.svg.png">
+            </div>
+        
+            <table>
+                <caption>sensor values</caption>
+                <thead>
+                    <tr>
+                        <th>Sno</th>
+                        <th>Sensor Value</th>
+                        <th>Date Added</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </main>
+    <footer>
+        <div>favicon made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+    </footer>
 
     <script type="text/javascript" src="{{url_for('static', filename='/index.js')}}"></script>
 </body>
