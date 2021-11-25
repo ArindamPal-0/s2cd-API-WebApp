@@ -1,3 +1,4 @@
+import requests
 from flask import Flask, Blueprint, request, jsonify, make_response
 from flask import render_template
 from flask_sqlalchemy import SQLAlchemy
@@ -91,6 +92,34 @@ api = Blueprint('api', __name__, url_prefix='/api')
 def test_api_conn():
     response = make_response(jsonify({'msg': 'This is Sensor Data Store API...'}), 200, {'content-type': 'application/json'})
     return response
+
+sensorInterfaceUrl = None
+
+@api.route('/remote_trigger_setup', methods=['POST'])
+def remote_trigger_setup():
+    global sensorInterfaceUrl
+    if request.json:
+        if 'ip' in request.json:
+            sensorInterfaceUrl = request.json['ip']
+            print(f'[Sensor Interface IP] {sensorInterfaceUrl}')
+            return 'successful', 201
+        else:
+            return 'unsuccessful, pass the interface ip', 401
+    return 'pass json data', 401
+
+@api.route('/remote_trigger', methods=['POST'])
+def remote_trigge():
+    global sensorInterfaceUrl
+    print(sensorInterfaceUrl)
+    if sensorInterfaceUrl is not None:
+        print('[triggerd]')
+        r = requests.get(f'{sensorInterfaceUrl}remote_trigger')
+        if r:
+            print(r.status_code)
+            print(r.content)
+        return 'triggered', 200
+    print('[not triggerd]')
+    return 'not triggered', 401
 
 @api.route('/sensor_values')
 def get_all_data():
